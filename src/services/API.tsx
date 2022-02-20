@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const api = 'http://192.168.1.94:8000'
+const api = 'https://skyguide-317801.uk.r.appspot.com/'
 export const getWeather = async (lat: number, lon: number) => {
 	const response = await axios.get(`${api}/?lat=${lat}&lon=${lon}`)
 	return response.data
