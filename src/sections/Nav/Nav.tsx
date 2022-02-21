@@ -1,17 +1,17 @@
-import { Menu, NotificationAdd } from '@mui/icons-material'
-import { Button, IconButton } from '@mui/material'
+// import { Menu, NotificationAdd } from '@mui/icons-material'
+import { Button } from '@mui/material'
 
-const requestNotificationPermission = () => {
-	// if (Notification.permission === 'granted') {
-	// 	const not = new Notification('Hello Skyguide', {
-	// 		body: "You've been notified!",
-	// 	})
-	// } else if ('Notification' in window) {
-	// 	Notification.requestPermission((status) => {
-	// 		console.log('Notification permission status:', status)
-	// 	})
-	// }
-}
+// const requestNotificationPermission = () => {
+// 	// if (Notification.permission === 'granted') {
+// 	// 	const not = new Notification('Hello Skyguide', {
+// 	// 		body: "You've been notified!",
+// 	// 	})
+// 	// } else if ('Notification' in window) {
+// 	// 	Notification.requestPermission((status) => {
+// 	// 		console.log('Notification permission status:', status)
+// 	// 	})
+// 	// }
+// }
 
 const Nav = ({ data }: any) => {
 	const { results } = data || {}
