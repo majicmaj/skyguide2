@@ -1,13 +1,8 @@
 import { Warning } from '@mui/icons-material'
-import { Button, Modal } from '@mui/material'
+import { Button } from '@mui/material'
 import { FC, useState } from 'react'
 import Card from '../../components/Card'
-
-const style = {
-	color: 'white',
-	margin: '0.5rem',
-	marginTop: '85px',
-}
+import { Modal } from '../../components/Modal'
 
 interface ICurrentlyProps {
 	data: any
@@ -29,13 +24,7 @@ const Alerts: FC<ICurrentlyProps> = ({ data }) => {
 			<Button variant='text' color='inherit' onClick={handleOpen}>
 				<u>Learn More</u>
 			</Button>
-			<Modal
-				style={style}
-				open={open}
-				onClose={handleClose}
-				aria-labelledby='modal-modal-title'
-				aria-describedby='modal-modal-description'
-			>
+			<Modal open={open} onClose={handleClose}>
 				<Card label={event} icon={<Warning fontSize='small' />}>
 					<div style={{ marginBottom: '1rem' }}>
 						{tags.length ? (

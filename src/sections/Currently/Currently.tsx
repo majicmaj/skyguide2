@@ -20,7 +20,7 @@ const Currently: FC<ICurrentlyProps> = ({ data, metric, setMetric }) => {
 	}
 	const roundedTemp = Math.round(temp)
 	const roundedFeelsLike = Math.round(feels_like)
-	const showFeelsLike = true // roundedTemp !== roundedFeelsLike
+	const showFeelsLike = roundedTemp !== roundedFeelsLike
 	const { icon, main } = weather?.[0] || {}
 
 	return (

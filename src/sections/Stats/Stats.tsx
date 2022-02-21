@@ -3,28 +3,14 @@ import { Tooltip } from '@mui/material'
 import { Box } from '@mui/system'
 import { FC } from 'react'
 import Card from '../../components/Card'
+import Suffix from '../../components/Suffix'
 import { GetColorFromUVI } from '../../services/GetColor'
 
 interface IStatsProps {
 	data: any
 }
-const Suffix = ({ children }: any) => {
-	return (
-		<Tooltip title={children}>
-			<Box
-				sx={{
-					color: '#aaa',
-					fontSize: '1rem',
-					fontStyle: 'italic',
-				}}
-			>
-				{children}
-			</Box>
-		</Tooltip>
-	)
-}
 
-const Field = ({ children, label }: any) => {
+export const Field = ({ children, label }: any) => {
 	return (
 		<Box
 			sx={{
@@ -44,6 +30,23 @@ const Field = ({ children, label }: any) => {
 	)
 }
 
+interface IWindArrowProps {
+	wind_deg: number
+}
+
+export const WindArrow = ({ wind_deg }: IWindArrowProps) => {
+	return (
+		<Tooltip title={`${wind_deg}°`}>
+			<Box
+				sx={{
+					transform: `rotate(${wind_deg}deg)`,
+				}}
+			>
+				<North fontSize='small' />
+			</Box>
+		</Tooltip>
+	)
+}
 const Stats: FC<IStatsProps> = ({ data }) => {
 	const { wind_speed, wind_deg, humidity, pressure, uvi, clouds, visibility } =
 		data || {}
@@ -59,15 +62,7 @@ const Stats: FC<IStatsProps> = ({ data }) => {
 					}}
 				>
 					<Field label='W'>
-						<Tooltip title={`${wind_deg}°`}>
-							<Box
-								sx={{
-									transform: `rotate(${wind_deg}deg)`,
-								}}
-							>
-								<North fontSize='small' />
-							</Box>
-						</Tooltip>
+						<WindArrow wind_deg={wind_deg} />
 						<p>{wind_speed ? wind_speed : '_'}</p>
 						<Suffix>mps</Suffix>
 					</Field>

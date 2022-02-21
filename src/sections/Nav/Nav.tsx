@@ -1,5 +1,17 @@
-import { Menu } from '@mui/icons-material'
+import { Menu, NotificationAdd } from '@mui/icons-material'
 import { Button, IconButton } from '@mui/material'
+
+const requestNotificationPermission = () => {
+	// if (Notification.permission === 'granted') {
+	// 	const not = new Notification('Hello Skyguide', {
+	// 		body: "You've been notified!",
+	// 	})
+	// } else if ('Notification' in window) {
+	// 	Notification.requestPermission((status) => {
+	// 		console.log('Notification permission status:', status)
+	// 	})
+	// }
+}
 
 const Nav = ({ data }: any) => {
 	const { results } = data || {}
@@ -18,11 +30,14 @@ const Nav = ({ data }: any) => {
 				placeItems: 'center',
 			}}
 		>
+			{/* <IconButton color='inherit' onClick={requestNotificationPermission}>
+				<NotificationAdd />
+			</IconButton> */}
 			<div />
 			<Button color='inherit'>
 				<p
 					style={{
-						fontSize: '2em',
+						fontSize: '1.5em',
 						textAlign: 'center',
 						textTransform: 'none',
 					}}
@@ -30,9 +45,9 @@ const Nav = ({ data }: any) => {
 					{name}
 				</p>
 			</Button>
-			<IconButton color='inherit'>
+			{/* <IconButton color='inherit'>
 				<Menu />
-			</IconButton>
+			</IconButton> */}
 		</div>
 	)
 }

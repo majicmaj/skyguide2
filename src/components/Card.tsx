@@ -1,7 +1,7 @@
 import { Box } from '@mui/system'
 
 const Card = (props: any) => {
-	const { label, icon } = props || {}
+	const { label, icon = '' } = props || {}
 	return (
 		<Box
 			sx={{
