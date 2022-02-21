@@ -39,7 +39,7 @@ const HourCard = ({ data, index, metric }: any) => {
 	}
 	const roundedTemp = Math.round(temp)
 	const roundedFeelsLike = Math.round(feels_like)
-	const { icon, main, description } = weather?.[0] || {}
+	const { icon, main } = weather?.[0] || {}
 	return (
 		<div
 			style={{
@@ -50,12 +50,26 @@ const HourCard = ({ data, index, metric }: any) => {
 			<Card label={getFormattedTime(dt) + ' - ' + main}>
 				<Box
 					sx={{
-						display: 'flex',
-						justifyContent: 'space-around',
-						alignItems: 'center',
+						display: 'grid',
+						placeItems: 'center',
+						gridTemplateColumns: 'max-content 1fr',
 					}}
 				>
-					<div>
+					<div
+						style={{
+							display: 'grid',
+							placeItems: 'center',
+						}}
+					>
+						<Box
+							sx={{
+								'& > img': {
+									width: '128px',
+								},
+							}}
+						>
+							<WeatherIcon icon={icon} large description={main} />
+						</Box>
 						<p
 							style={{
 								fontSize: '4em',
@@ -65,7 +79,7 @@ const HourCard = ({ data, index, metric }: any) => {
 							{roundedTemp}°
 						</p>
 						<p>
-							feels like{' '}
+							Feels like{' '}
 							<span
 								style={{
 									color: feelsLikeColor,
@@ -74,43 +88,35 @@ const HourCard = ({ data, index, metric }: any) => {
 								{roundedFeelsLike}°
 							</span>
 						</p>
-						<ColoredPop pop={pop} />
 					</div>
-
 					<Box
 						sx={{
-							'& > img': {
-								width: '96px',
-							},
+							display: 'grid',
+							placeItems: 'center start',
+							height: '100%',
 						}}
 					>
-						<WeatherIcon icon={icon} large description={main} />
-						<p style={{ textTransform: 'capitalize' }}>{description}</p>
+						<Field label='Wind'>
+							<WindArrow wind_deg={wind_deg} /> {wind_speed}{' '}
+							<Suffix>mps</Suffix>
+						</Field>
+						<Field label='Pressure'>
+							{pressure} <Suffix>hPa</Suffix>
+						</Field>
+						<Field label='Humidity'>
+							{humidity} <Suffix>%</Suffix>
+						</Field>
+						<Field label='UVI'>{uvi}</Field>
+						<Field label='Clouds'>
+							{clouds} <Suffix>%</Suffix>
+						</Field>
+						<Field label='Visibility'>
+							{visibility} <Suffix>m</Suffix>
+						</Field>
+						<Field label='Percipitation'>
+							<ColoredPop pop={pop} />
+						</Field>
 					</Box>
-				</Box>
-				<Box
-					sx={{
-						marginTop: '2rem',
-						display: 'grid',
-						gridTemplateColumns: '1fr 1fr 1fr',
-					}}
-				>
-					<Field label='W'>
-						<WindArrow wind_deg={wind_deg} /> {wind_speed} <Suffix>mps</Suffix>
-					</Field>
-					<Field label='P'>
-						{pressure} <Suffix>hPa</Suffix>
-					</Field>
-					<Field label='H'>
-						{humidity} <Suffix>%</Suffix>
-					</Field>
-					<Field label='U'>{uvi}</Field>
-					<Field label='C'>
-						{clouds} <Suffix>%</Suffix>
-					</Field>
-					<Field label='V'>
-						{visibility} <Suffix>m</Suffix>
-					</Field>
 				</Box>
 			</Card>
 		</div>

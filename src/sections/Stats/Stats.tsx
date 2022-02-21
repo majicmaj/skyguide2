@@ -23,7 +23,7 @@ export const Field = ({ children, label }: any) => {
 					marginRight: '0.25rem',
 				}}
 			>
-				<strong>{label}: </strong>
+				{label && <strong>{label}: </strong>}
 			</Box>
 			{children}
 		</Box>
