@@ -13,6 +13,7 @@ import Stats from './sections/Stats/Stats'
 import Nav from './sections/Nav/Nav'
 import SampleData from './SampleData.json'
 import useStickyState from './hooks/useStickyState'
+import Minutely from './sections/Minutely/Minutely'
 
 const SampleLocation = {
 	results: [
@@ -75,19 +76,17 @@ function App() {
 		}
 	}, [])
 
-	const { current, hourly, daily, alerts } = data || {}
+	const { current, minutely, hourly, daily, alerts } = data || {}
 	const { dt } = current || {}
 	const backgroundImage = getDesktopBackground(dt)
 	const backgroundMobileImage = getMobileBackground(dt)
+	const willPreciptate = minutely?.some((m: any) => m.precipitation > 0)
 	return (
 		<div className='App'>
 			<Box
 				sx={{
 					background: `linear-gradient(to bottom, #2266ff, #ffccaa, #faf)`,
 					backgroundImage: `url(${backgroundMobileImage})`,
-					'@media screen and (min-width: 768px)': {
-						backgroundImage: `url(${backgroundImage})`,
-					},
 					backgroundSize: 'cover',
 					backgroundPosition: 'center',
 					color: 'white',
@@ -96,14 +95,24 @@ function App() {
 					gridGap: '1rem',
 					padding: '0.5rem',
 					fontSize: '20px',
-					placeItems: 'center',
+					'@media screen and (min-width: 768px)': {
+						backgroundImage: `url(${backgroundImage})`,
+						gridTemplateColumns: 'repeat(2, calc(50% - 0.5rem))',
+						gridTemplateAreas: `
+						"n n"
+						"c c"
+						"m m"
+						"h s"
+						"d d"
+						`,
+					},
 				}}
 			>
 				<Nav data={location} />
 				<Currently data={current} metric={metric} setMetric={setMetric} />
 				<Stats data={current} />
 				{alerts && alerts.length && <Alerts data={alerts} />}
-				{/* {(current?.rain || current?.snow) && <Minutely data={minutely} />} */}
+				{willPreciptate && <Minutely data={minutely} />}
 				<Hourly data={hourly} metric={metric} />
 				<Daily data={daily} metric={metric} />
 			</Box>

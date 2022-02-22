@@ -1,3 +1,5 @@
+import { Box } from '@mui/system'
+
 interface INavProps {
 	data: any
 }
@@ -11,8 +13,11 @@ const Nav = ({ data }: INavProps) => {
 		address_components.find((c: any) => c.types.includes('locality'))
 	const name = locality ? locality.long_name : 'Loading...'
 	return (
-		<div
-			style={{
+		<Box
+			sx={{
+				'@media screen and (min-width: 768px)': {
+					gridArea: 'c',
+				},
 				display: 'grid',
 				marginTop: '0.5rem',
 				placeItems: 'center',
@@ -27,7 +32,7 @@ const Nav = ({ data }: INavProps) => {
 			>
 				{name}
 			</p>
-		</div>
+		</Box>
 	)
 }
 

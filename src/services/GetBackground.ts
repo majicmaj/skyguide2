@@ -28,13 +28,13 @@ export const getBackground = (dt: number, backgrounds: any): string => {
 	if (hour === 5) {
 		return backgrounds[2]
 	}
-	if (hour > 5 && hour < 9) {
+	if (hour > 5 && hour <= 9) {
 		return backgrounds[3]
 	}
-	if (hour > 9 && hour < 15) {
+	if (hour > 9 && hour <= 15) {
 		return backgrounds[4]
 	}
-	if (hour > 15 && hour < 18) {
+	if (hour > 15 && hour <= 18) {
 		return backgrounds[5]
 	}
 	if (hour === 18) {

@@ -53,7 +53,15 @@ const Hourly: FC<IHourlyProps> = ({ data, metric }) => {
 	}
 	const handleClose = () => setOpen(false)
 	return (
-		<Card icon={<AccessTime fontSize='small' />} label='Hourly'>
+		<Card
+			icon={<AccessTime fontSize='small' />}
+			label='Hourly'
+			sx={{
+				'@media screen and (min-width: 768px)': {
+					gridArea: 'h',
+				},
+			}}
+		>
 			<Box
 				sx={{
 					display: 'flex',

@@ -1,7 +1,7 @@
 import { Box } from '@mui/system'
 
 const Card = (props: any) => {
-	const { label, icon = '' } = props || {}
+	const { label, icon = '', sx } = props || {}
 	return (
 		<Box
 			sx={{
@@ -9,15 +9,15 @@ const Card = (props: any) => {
 				flexDirection: 'column',
 				padding: '1rem',
 				width: '100%',
-				maxWidth: '800px',
+				maxWidth: '100%',
 				borderRadius: '1rem',
 				background: '#00000060',
 				border: '1px solid #ffffff10',
 				boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
 				backdropFilter: 'blur( 20px )',
 				WebkitBackdropFilter: 'blur( 20px )',
+				...sx,
 			}}
-			{...props}
 		>
 			{label && (
 				<Box

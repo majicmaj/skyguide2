@@ -52,41 +52,49 @@ const Stats: FC<IStatsProps> = ({ data }) => {
 		data || {}
 	const uviHSL = uvi ? GetColorFromUVI(uvi) : '#fff'
 	return (
-		<Card>
-			<div>
-				<Box
-					sx={{
-						display: 'grid',
-						gridTemplateColumns: '1fr 1fr 1fr',
-						fontSize: '0.8em',
-					}}
-				>
-					<Field label='W'>
-						<WindArrow wind_deg={wind_deg} />
-						<p>{wind_speed ? wind_speed : '_'}</p>
-						<Suffix>mps</Suffix>
-					</Field>
-					<Field label='H'>
-						{humidity ? `${humidity}` : '_'}
-						<Suffix>%</Suffix>
-					</Field>
-					<Field label='P'>
-						{pressure ? `${pressure}` : '_'}
-						<Suffix>hPa</Suffix>
-					</Field>
-					<Field label='UV'>
-						{uvi || uvi === 0 ? <p style={{ color: uviHSL }}>{uvi}</p> : '_'}
-					</Field>
-					<Field label='C'>
-						{clouds || clouds === 0 ? `${clouds}` : '_'}
-						<Suffix>%</Suffix>
-					</Field>
-					<Field label='V'>
-						{visibility ? `${visibility}` : '_'}
-						<Suffix>m</Suffix>
-					</Field>
-				</Box>
-			</div>
+		<Card
+			sx={{
+				'@media screen and (min-width: 768px)': {
+					gridArea: 's',
+					justifyContent: 'center',
+				},
+			}}
+		>
+			<Box
+				sx={{
+					display: 'grid',
+					gridTemplateColumns: '1fr 1fr 1fr',
+					fontSize: '0.8em',
+					'@media screen and (min-width: 768px)': {
+						height: '100%',
+					},
+				}}
+			>
+				<Field label='W'>
+					<WindArrow wind_deg={wind_deg} />
+					<p>{wind_speed ? wind_speed : '_'}</p>
+					<Suffix>mps</Suffix>
+				</Field>
+				<Field label='H'>
+					{humidity ? `${humidity}` : '_'}
+					<Suffix>%</Suffix>
+				</Field>
+				<Field label='P'>
+					{pressure ? `${pressure}` : '_'}
+					<Suffix>hPa</Suffix>
+				</Field>
+				<Field label='UV'>
+					{uvi || uvi === 0 ? <p style={{ color: uviHSL }}>{uvi}</p> : '_'}
+				</Field>
+				<Field label='C'>
+					{clouds || clouds === 0 ? `${clouds}` : '_'}
+					<Suffix>%</Suffix>
+				</Field>
+				<Field label='V'>
+					{visibility ? `${visibility}` : '_'}
+					<Suffix>m</Suffix>
+				</Field>
+			</Box>
 		</Card>
 	)
 }

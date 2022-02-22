@@ -24,7 +24,13 @@ const Currently: FC<ICurrentlyProps> = ({ data, metric, setMetric }) => {
 	const { icon, main } = weather?.[0] || {}
 
 	return (
-		<Card>
+		<Card
+			sx={{
+				'@media screen and (min-width: 768px)': {
+					gridArea: 'c',
+				},
+			}}
+		>
 			<Box
 				sx={{
 					display: 'grid',

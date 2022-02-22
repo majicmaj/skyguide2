@@ -101,7 +101,15 @@ const DayWeather = ({ item, index, metric, data }: any) => {
 }
 const Daily: FC<IHourlyProps> = ({ data, metric }) => {
 	return (
-		<Card icon={<CalendarToday fontSize='small' />} label='Daily'>
+		<Card
+			icon={<CalendarToday fontSize='small' />}
+			label='Daily'
+			sx={{
+				'@media screen and (min-width: 768px)': {
+					gridArea: 'd',
+				},
+			}}
+		>
 			<Box
 				sx={{
 					display: 'grid',
