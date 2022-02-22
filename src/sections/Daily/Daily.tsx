@@ -60,7 +60,7 @@ const DayWeather = ({ item, index, metric, data }: any) => {
 		<Box
 			sx={{
 				display: 'grid',
-				gridTemplateColumns: '1fr 1fr 1fr 1fr',
+				gridTemplateColumns: '50px 1fr 1fr max-content',
 				placeItems: 'center',
 				'& > img': {
 					width: '2.5rem',

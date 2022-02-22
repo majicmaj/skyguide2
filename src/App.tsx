@@ -3,8 +3,7 @@ import { getWeather, getCityName } from './services/API'
 import { Box } from '@mui/system'
 import Currently from './sections/Currently/Currently'
 import Alerts from './sections/Alerts/Alerts'
-import { getBackground } from './services/GetBackground'
-// import Minutely from './sections/Minutely/Minutely'
+import { getBackground, getMobileBackground } from './services/GetBackground'
 import Hourly from './sections/Hourly/Hourly'
 import Daily from './sections/Daily/Daily'
 import Stats from './sections/Stats/Stats'
@@ -72,21 +71,18 @@ function App() {
 		}
 	}, [])
 
-	const {
-		current,
-		//minutely,
-		hourly,
-		daily,
-		alerts,
-	} = data
+	const { current, hourly, daily, alerts } = data
 	const backgroundImage = getBackground()
+	const backgroundMobileImage = getMobileBackground()
 	return (
 		<div className='App'>
 			<Box
 				sx={{
-					// background: '#3829aa',
 					background: `linear-gradient(to bottom, #2266ff, #ffccaa, #faf)`,
-					backgroundImage: `url(${backgroundImage})`,
+					backgroundImage: `url(${backgroundMobileImage})`,
+					'@media screen and (min-width: 768px)': {
+						backgroundImage: `url(${backgroundImage})`,
+					},
 					backgroundSize: 'cover',
 					backgroundPosition: 'center',
 					color: 'white',
@@ -100,11 +96,11 @@ function App() {
 			>
 				<Nav data={location} />
 				<Currently data={current} metric={metric} setMetric={setMetric} />
+				<Stats data={current} />
 				{alerts && alerts.length && <Alerts data={alerts} />}
 				{/* {(current?.rain || current?.snow) && <Minutely data={minutely} />} */}
 				<Hourly data={hourly} metric={metric} />
 				<Daily data={daily} metric={metric} />
-				<Stats data={current} />
 			</Box>
 		</div>
 	)

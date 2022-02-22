@@ -9,7 +9,7 @@ const Card = (props: any) => {
 				flexDirection: 'column',
 				padding: '1rem',
 				width: '100%',
-				maxWidth: '1000px',
+				maxWidth: '800px',
 				borderRadius: '1rem',
 				background: '#00000060',
 				border: '1px solid #ffffff10',
