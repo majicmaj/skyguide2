@@ -1,4 +1,4 @@
-import { CircularProgress } from '@mui/material'
+import { Button, CircularProgress } from '@mui/material'
 import { Box } from '@mui/system'
 import { Dispatch, FC, SetStateAction } from 'react'
 import Card from '../../components/Card'
@@ -40,10 +40,12 @@ const Currently: FC<ICurrentlyProps> = ({ data, metric, setMetric }) => {
 						placeItems: 'center',
 					}}
 				>
-					<Box
+					<Button
 						sx={{
 							fontSize: '96px',
 							display: 'grid',
+							color: 'white',
+							lineHeight: '96px',
 							placeItems: (showFeelsLike) =>
 								showFeelsLike ? 'end center' : 'center',
 							marginTop: '-0.5rem',
@@ -62,7 +64,7 @@ const Currently: FC<ICurrentlyProps> = ({ data, metric, setMetric }) => {
 								{metric ? 'C' : 'F'}
 							</Box>
 						</Box>
-					</Box>
+					</Button>
 					<div>
 						{feels_like && showFeelsLike && (
 							<p>

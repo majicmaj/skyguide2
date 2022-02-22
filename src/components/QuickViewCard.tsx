@@ -106,11 +106,9 @@ const QuickViewCard = ({ data, metric }: any) => {
 						<Field label='Visibility'>
 							{visibility} <Suffix>m</Suffix>
 						</Field>
-						{pop && (
-							<Field label='Percipitation'>
-								<ColoredPop pop={pop} />
-							</Field>
-						)}
+						<Field label='Percipitation'>
+							<ColoredPop pop={pop} />
+						</Field>
 					</Box>
 				</Box>
 			</Card>

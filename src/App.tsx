@@ -3,7 +3,10 @@ import { getWeather, getCityName } from './services/API'
 import { Box } from '@mui/system'
 import Currently from './sections/Currently/Currently'
 import Alerts from './sections/Alerts/Alerts'
-import { getBackground, getMobileBackground } from './services/GetBackground'
+import {
+	getDesktopBackground,
+	getMobileBackground,
+} from './services/GetBackground'
 import Hourly from './sections/Hourly/Hourly'
 import Daily from './sections/Daily/Daily'
 import Stats from './sections/Stats/Stats'
@@ -72,9 +75,10 @@ function App() {
 		}
 	}, [])
 
-	const { current, hourly, daily, alerts } = data
-	const backgroundImage = getBackground()
-	const backgroundMobileImage = getMobileBackground()
+	const { current, hourly, daily, alerts } = data || {}
+	const { dt } = current || {}
+	const backgroundImage = getDesktopBackground(dt)
+	const backgroundMobileImage = getMobileBackground(dt)
 	return (
 		<div className='App'>
 			<Box
