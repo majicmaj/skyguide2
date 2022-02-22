@@ -9,6 +9,7 @@ import Daily from './sections/Daily/Daily'
 import Stats from './sections/Stats/Stats'
 import Nav from './sections/Nav/Nav'
 import SampleData from './SampleData.json'
+import useStickyState from './hooks/useStickyState'
 
 const SampleLocation = {
 	results: [
@@ -28,7 +29,7 @@ function App() {
 	const devMode = 0
 	const [data, setData] = useState<any>({})
 	const [location, setLocation] = useState<any>({})
-	const [metric, setMetric] = useState<boolean>(true)
+	const [metric, setMetric] = useStickyState(true, 'metric')
 
 	useEffect(() => {
 		if (devMode) {
