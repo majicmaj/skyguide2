@@ -76,7 +76,7 @@ const Currently: FC<ICurrentlyProps> = ({ data, metric, setMetric }) => {
 							<p>
 								Feels like{' '}
 								<span style={{ color: feelsLikeColor }}>
-									{feels_like ? `${roundedFeelsLike}°` : '_'}
+									{roundedFeelsLike ? `${roundedFeelsLike}°` : '_'}
 								</span>
 							</p>
 						)}
