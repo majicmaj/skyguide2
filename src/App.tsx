@@ -141,6 +141,7 @@ function App() {
 					color: 'white',
 					minHeight: '100vh',
 					display: 'grid',
+					gridTemplateColumns: '1fr',
 					gridGap: '1rem',
 					padding: '0.5rem',
 					fontSize: '20px',
@@ -150,7 +151,7 @@ function App() {
 						fontSize: '16px',
 						padding: 0,
 					},
-					'@media screen and (min-width: 768px)': {
+					[MEDIA.lg]: {
 						gridTemplateColumns: 'repeat(2, calc(50% - 0.5rem))',
 						gridTemplateAreas: getGridArea(willPreciptate, alerts),
 					},

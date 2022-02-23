@@ -3,6 +3,7 @@ import { Button } from '@mui/material'
 import { FC, useState } from 'react'
 import Card from '../../components/Card'
 import { Modal } from '../../components/Modal'
+import { MEDIA } from '../../constants'
 
 interface ICurrentlyProps {
 	data: any
@@ -24,7 +25,9 @@ const Alerts: FC<ICurrentlyProps> = ({ data }) => {
 	return (
 		<Card
 			sx={{
-				gridArea: 'a',
+				[MEDIA.lg]: {
+					gridArea: 'a',
+				},
 			}}
 			label={event}
 			icon={<Warning fontSize='small' />}
