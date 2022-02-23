@@ -3,7 +3,6 @@ import { Modal as MuiModal } from '@mui/material'
 const style = {
 	color: 'white',
 	margin: '0.5rem',
-	marginTop: '85px',
 }
 
 interface IModalProps {

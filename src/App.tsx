@@ -82,11 +82,17 @@ function App() {
 	const backgroundMobileImage = getMobileBackground(dt)
 	const willPreciptate = minutely?.some((m: any) => m.precipitation > 0)
 	return (
-		<div className='App'>
+		<Box
+			className='App'
+			sx={{
+				backgroundImage: `url(${backgroundMobileImage})`,
+				'@media screen and (min-width: 768px)': {
+					backgroundImage: `url(${backgroundImage})`,
+				},
+			}}
+		>
 			<Box
 				sx={{
-					background: `linear-gradient(to bottom, #2266ff, #ffccaa, #faf)`,
-					backgroundImage: `url(${backgroundMobileImage})`,
 					backgroundSize: 'cover',
 					backgroundPosition: 'center',
 					color: 'white',
@@ -95,13 +101,13 @@ function App() {
 					gridGap: '1rem',
 					padding: '0.5rem',
 					fontSize: '20px',
+					maxWidth: '1000px',
+					margin: '0 auto',
 					'@media screen and (min-width: 768px)': {
-						backgroundImage: `url(${backgroundImage})`,
 						gridTemplateColumns: 'repeat(2, calc(50% - 0.5rem))',
 						gridTemplateAreas: `
 						"n n"
 						"c c"
-						"m m"
 						"h s"
 						"d d"
 						`,
@@ -116,7 +122,7 @@ function App() {
 				<Hourly data={hourly} metric={metric} />
 				<Daily data={daily} metric={metric} />
 			</Box>
-		</div>
+		</Box>
 	)
 }
 

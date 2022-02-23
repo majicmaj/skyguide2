@@ -38,6 +38,8 @@ const QuickViewCard = ({ data, metric }: any) => {
 			style={{
 				display: 'grid',
 				placeItems: 'center',
+				maxWidth: 'calc(1000px - 1rem)',
+				margin: '0 auto',
 			}}
 		>
 			<Card labe={title}>
@@ -45,7 +47,7 @@ const QuickViewCard = ({ data, metric }: any) => {
 					sx={{
 						display: 'grid',
 						placeItems: 'center',
-						gridTemplateColumns: 'max-content 1fr',
+						gridTemplateColumns: '1fr 1fr',
 					}}
 				>
 					<div
@@ -66,6 +68,7 @@ const QuickViewCard = ({ data, metric }: any) => {
 						<p
 							style={{
 								fontSize: '4em',
+								marginTop: '-1.5rem',
 								color: tempColor,
 							}}
 						>
@@ -85,8 +88,9 @@ const QuickViewCard = ({ data, metric }: any) => {
 					<Box
 						sx={{
 							display: 'grid',
-							placeItems: 'center start',
+							placeItems: 'start',
 							height: '100%',
+							width: '100%',
 						}}
 					>
 						<Field label='Wind'>
