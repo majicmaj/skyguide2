@@ -4,6 +4,7 @@ import { FC } from 'react'
 import Card from '../../components/Card'
 import ColoredPop from '../../components/ColoredPop'
 import WeatherIcon from '../../components/WeatherIcon'
+import { MEDIA } from '../../constants'
 import { GetColorFromTemperature } from '../../services/GetColor'
 
 interface IHourlyProps {
@@ -60,10 +61,16 @@ const DayWeather = ({ item, index, metric, data }: any) => {
 		<Box
 			sx={{
 				display: 'grid',
-				gridTemplateColumns: '60px 1fr 1fr minmax(100px, 1fr)',
-				placeItems: 'center',
+				gridTemplateColumns: '60px 40px 60px 1fr',
+				placeItems: 'center start',
 				'& > img': {
 					width: '2.5rem',
+				},
+				[MEDIA.lg]: {
+					gridTemplateColumns: 'repeat(3, 1fr) 2fr',
+				},
+				[MEDIA.xs]: {
+					gridTemplateColumns: '50px 40px 50px 1fr',
 				},
 			}}
 		>
@@ -74,6 +81,7 @@ const DayWeather = ({ item, index, metric, data }: any) => {
 							weekday: 'short',
 					  })}
 			</p>
+
 			<WeatherIcon icon={icon} description={description} />
 			<ColoredPop pop={pop} />
 			<Box

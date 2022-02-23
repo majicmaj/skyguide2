@@ -8,6 +8,14 @@ interface ICurrentlyProps {
 	data: any
 }
 
+// capitalize all letters in a string that are preceeded by a period
+const capitalize = (str: string) =>
+	str
+		.toLowerCase()
+		.split('. ')
+		.map((s: string) => s.charAt(0).toUpperCase() + s.slice(1))
+		.join('. ')
+
 const Alerts: FC<ICurrentlyProps> = ({ data }) => {
 	const { event, tags, end, sender_name, description } = data[0]
 	const [open, setOpen] = useState(false)
@@ -27,18 +35,16 @@ const Alerts: FC<ICurrentlyProps> = ({ data }) => {
 			<Modal open={open} onClose={handleClose}>
 				<Card label={event} icon={<Warning fontSize='small' />}>
 					<div style={{ marginBottom: '1rem' }}>
-						{tags.length ? (
+						{tags.length > 0 && (
 							<p>
 								<b>Severe Weather Type: </b>
 								<span>{tags.join(',')}</span>
 							</p>
-						) : (
-							'None'
 						)}
 					</div>
 					<p>
 						<b>{sender_name}</b>:{' '}
-						{description.replaceAll('...', '').toLowerCase()}
+						{capitalize(description.replaceAll('...', ''))}
 					</p>
 				</Card>
 			</Modal>

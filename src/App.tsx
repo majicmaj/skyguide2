@@ -31,7 +31,7 @@ const SampleLocation = {
 }
 
 function App() {
-	const devMode = 1
+	const devMode = 0
 	const [data, setData] = useState<any>({})
 	const [location, setLocation] = useState<any>({})
 	const [metric, setMetric] = useStickyState(true, 'metric')
@@ -101,7 +101,7 @@ function App() {
 					display: 'grid',
 					gridGap: '1rem',
 					padding: '0.5rem',
-					fontSize: '18px',
+					fontSize: '20px',
 					maxWidth: '1000px',
 					margin: '0 auto',
 					[MEDIA.xs]: {
