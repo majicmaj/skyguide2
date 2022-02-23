@@ -14,6 +14,7 @@ import Nav from './sections/Nav/Nav'
 import SampleData from './SampleData.json'
 import useStickyState from './hooks/useStickyState'
 import Minutely from './sections/Minutely/Minutely'
+import { MEDIA } from './constants'
 
 const SampleLocation = {
 	results: [
@@ -30,7 +31,7 @@ const SampleLocation = {
 }
 
 function App() {
-	const devMode = 0
+	const devMode = 1
 	const [data, setData] = useState<any>({})
 	const [location, setLocation] = useState<any>({})
 	const [metric, setMetric] = useStickyState(true, 'metric')
@@ -85,27 +86,39 @@ function App() {
 		<Box
 			className='App'
 			sx={{
+				backgroundSize: 'cover',
+				backgroundPosition: 'center',
 				backgroundImage: `url(${backgroundMobileImage})`,
-				'@media screen and (min-width: 768px)': {
+				[MEDIA.lg]: {
 					backgroundImage: `url(${backgroundImage})`,
 				},
 			}}
 		>
 			<Box
 				sx={{
-					backgroundSize: 'cover',
-					backgroundPosition: 'center',
 					color: 'white',
 					minHeight: '100vh',
 					display: 'grid',
 					gridGap: '1rem',
 					padding: '0.5rem',
-					fontSize: '20px',
+					fontSize: '18px',
 					maxWidth: '1000px',
 					margin: '0 auto',
+					[MEDIA.xs]: {
+						fontSize: '16px',
+						padding: 0,
+					},
 					'@media screen and (min-width: 768px)': {
 						gridTemplateColumns: 'repeat(2, calc(50% - 0.5rem))',
-						gridTemplateAreas: `
+						gridTemplateAreas: willPreciptate
+							? `
+						"n n"
+						"c c"
+						"m m"
+						"h s"
+						"d d"
+						`
+							: `
 						"n n"
 						"c c"
 						"h s"

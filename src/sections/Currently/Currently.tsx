@@ -49,6 +49,9 @@ const Currently: FC<ICurrentlyProps> = ({ data, metric, setMetric }) => {
 					<Button
 						sx={{
 							fontSize: '96px',
+							'@media screen and (max-width: 300px)': {
+								fontSize: '64px',
+							},
 							display: 'grid',
 							color: 'white',
 							lineHeight: '96px',
@@ -87,6 +90,12 @@ const Currently: FC<ICurrentlyProps> = ({ data, metric, setMetric }) => {
 					sx={{
 						display: 'grid',
 						gridTemplateRows: '128px 1fr',
+						'@media screen and (max-width: 320px)': {
+							'& > img': {
+								width: '96px',
+								height: '96px',
+							},
+						},
 						placeItems: 'center',
 						'& > img': {
 							width: '128px',

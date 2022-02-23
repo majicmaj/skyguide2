@@ -32,23 +32,40 @@ const getMinutesFromDate = (date: any) => {
 }
 const Minutely: FC<IMinutelylyProps> = ({ data }) => {
 	const maxPrecipitation = Math.max(...data.map((d: any) => d.precipitation))
-	const firstPercipitationZero = getMinutesFromDate(
+	const firstPrecipitationEnd = getMinutesFromDate(
 		data.find((d: any) => d.precipitation === 0)?.dt
 	)
+	const firstPrecipitationStart = getMinutesFromDate(
+		data.find((d: any) => d.precipitation > 0)?.dt
+	)
+	const isPrecipitating = data[0].precipitation > 0
 	const timeNow = new Date().getMinutes()
 
 	return (
-		<Card label='Minutely' icon={<HourglassEmpty />}>
-			<p>
-				Precipitation will stop in {firstPercipitationZero - timeNow} minutes
-			</p>
+		<Card
+			sx={{
+				'@media screen and (min-width: 768px)': {
+					gridArea: 'm',
+				},
+			}}
+			label='Next Hour'
+			icon={<HourglassEmpty />}
+		>
+			{isPrecipitating ? (
+				<p>
+					Precipitation stopping in {firstPrecipitationEnd - timeNow} minutes
+				</p>
+			) : (
+				<p>Precipitation starting in {firstPrecipitationStart} minutes</p>
+			)}
+
 			<Box
 				sx={{
 					display: 'grid',
 					placeItems: 'end',
 					marginTop: '1rem',
 					gridTemplateColumns: 'repeat(61, 1fr)',
-					// gridGap: '2px',
+					gridGap: '0.8%',
 				}}
 			>
 				{data &&
@@ -72,14 +89,14 @@ const Minutely: FC<IMinutelylyProps> = ({ data }) => {
 									precipitation={item.precipitation}
 									maxP={maxPrecipitation}
 								/>
-								{mins % 15 === 0 && (
+								{mins % 10 === 0 && (
 									<span
 										style={{
 											fontSize: '0.5em',
 											position: 'absolute',
 										}}
 									>
-										{mins}
+										{mins}m
 									</span>
 								)}
 							</div>

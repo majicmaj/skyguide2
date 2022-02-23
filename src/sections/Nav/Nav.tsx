@@ -16,7 +16,7 @@ const Nav = ({ data }: INavProps) => {
 		<Box
 			sx={{
 				'@media screen and (min-width: 768px)': {
-					gridArea: 'c',
+					gridArea: 'n',
 				},
 				display: 'grid',
 				marginTop: '0.5rem',

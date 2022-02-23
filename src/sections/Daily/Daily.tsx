@@ -16,20 +16,20 @@ const Bar = ({ min, max, minHsl, maxHsl, data }: any) => {
 	const dataMin = Math.min(...data?.map((d: any) => d?.temp?.min))
 	const dataMax = Math.max(...data?.map((d: any) => d.temp.max))
 	const range = dataMax - dataMin
-	const width = 60
+	const width = 100
 	const modifier = range / width
 	return (
 		<div
 			style={{
 				background: '#00000030',
 				display: 'flex',
-				width: width + 'px',
+				width: width + '%',
 				borderRadius: '2px',
 			}}
 		>
 			<div
 				style={{
-					width: `${(min - dataMin) / modifier}px`,
+					width: `${(min - dataMin) / modifier}%`,
 				}}
 			/>
 			<Box
@@ -37,7 +37,7 @@ const Bar = ({ min, max, minHsl, maxHsl, data }: any) => {
 					height: '4px',
 					background: 'red',
 					borderRadius: '2px',
-					width: `${(max - min) / modifier}px`,
+					width: `${(max - min) / modifier}%`,
 					backgroundImage: `linear-gradient(to right, ${minHsl}, ${maxHsl})`,
 				}}
 			/>
@@ -60,22 +60,20 @@ const DayWeather = ({ item, index, metric, data }: any) => {
 		<Box
 			sx={{
 				display: 'grid',
-				gridTemplateColumns: '50px 1fr 1fr max-content',
+				gridTemplateColumns: '60px 1fr 1fr minmax(100px, 1fr)',
 				placeItems: 'center',
 				'& > img': {
 					width: '2.5rem',
 				},
 			}}
 		>
-			{index === 0 ? (
-				<p>Today</p>
-			) : (
-				<p>
-					{new Date(dt * 1000).toLocaleString('en-US', {
-						weekday: 'short',
-					})}
-				</p>
-			)}
+			<p style={{ textAlign: 'left', width: '100%' }}>
+				{index === 0
+					? 'Today'
+					: new Date(dt * 1000).toLocaleString('en-US', {
+							weekday: 'short',
+					  })}
+			</p>
 			<WeatherIcon icon={icon} description={description} />
 			<ColoredPop pop={pop} />
 			<Box
@@ -83,6 +81,7 @@ const DayWeather = ({ item, index, metric, data }: any) => {
 					display: 'grid',
 					placeItems: 'center start',
 					gridGap: '0.5rem',
+					width: '100%',
 					gridTemplateColumns: '30px 1fr 30px',
 				}}
 			>
