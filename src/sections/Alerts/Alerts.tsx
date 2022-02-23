@@ -22,7 +22,13 @@ const Alerts: FC<ICurrentlyProps> = ({ data }) => {
 	const handleOpen = () => setOpen(true)
 	const handleClose = () => setOpen(false)
 	return (
-		<Card label={event} icon={<Warning fontSize='small' />}>
+		<Card
+			sx={{
+				gridArea: 'a',
+			}}
+			label={event}
+			icon={<Warning fontSize='small' />}
+		>
 			<p>
 				{event} until{' '}
 				{new Date(end * 1000).toLocaleTimeString('en-US', {

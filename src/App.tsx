@@ -30,6 +30,48 @@ const SampleLocation = {
 	],
 }
 
+const gridArea = {
+	def: `
+	"n n"
+	"c c"
+	"h s"
+	"d d"
+	`,
+	willPreciptate: `
+	"n n"
+	"c c"
+	"m m"
+	"h s"
+	"d d"
+	`,
+	alerts: `
+	"n n"
+	"c c"
+	"a a"
+	"h s"
+	"d d"
+	`,
+	both: `
+	"n n"
+	"c c"
+	"a a"
+	"m m"
+	"h s"
+	"d d"
+	`,
+}
+
+const getGridArea = (precipitation: boolean, alerts: boolean) => {
+	if (precipitation && alerts) {
+		return gridArea.both
+	} else if (precipitation) {
+		return gridArea.willPreciptate
+	} else if (alerts) {
+		return gridArea.alerts
+	}
+	return gridArea.def
+}
+
 function App() {
 	const devMode = 0
 	const [data, setData] = useState<any>({})
@@ -110,20 +152,7 @@ function App() {
 					},
 					'@media screen and (min-width: 768px)': {
 						gridTemplateColumns: 'repeat(2, calc(50% - 0.5rem))',
-						gridTemplateAreas: willPreciptate
-							? `
-						"n n"
-						"c c"
-						"m m"
-						"h s"
-						"d d"
-						`
-							: `
-						"n n"
-						"c c"
-						"h s"
-						"d d"
-						`,
+						gridTemplateAreas: getGridArea(willPreciptate, alerts),
 					},
 				}}
 			>
