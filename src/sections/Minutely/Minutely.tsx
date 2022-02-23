@@ -9,7 +9,6 @@ interface IMinutelylyProps {
 }
 const Minute = ({ dt, precipitation, maxP }: any) => {
 	const height = (precipitation / maxP) * 100 + 'px'
-	const mins = new Date(dt * 1000).getMinutes()
 	return (
 		<Tooltip title={precipitation + 'mm'} enterTouchDelay={0}>
 			<div
