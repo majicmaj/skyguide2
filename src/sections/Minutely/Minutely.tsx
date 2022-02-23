@@ -56,7 +56,9 @@ const Minutely: FC<IMinutelylyProps> = ({ data }) => {
 					Precipitation stopping in {firstPrecipitationEnd - timeNow} minutes
 				</p>
 			) : (
-				<p>Precipitation starting in {firstPrecipitationStart} minutes</p>
+				<p>
+					Precipitation starting in {firstPrecipitationStart - timeNow} minutes
+				</p>
 			)}
 
 			<Box
