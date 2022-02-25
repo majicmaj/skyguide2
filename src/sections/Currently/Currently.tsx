@@ -1,4 +1,4 @@
-import { Button, CircularProgress } from '@mui/material'
+import { Button, CircularProgress, Tooltip } from '@mui/material'
 import { Box } from '@mui/system'
 import { Dispatch, FC, SetStateAction } from 'react'
 import Card from '../../components/Card'
@@ -21,7 +21,7 @@ const Currently: FC<ICurrentlyProps> = ({ data, metric, setMetric }) => {
 	const roundedTemp = Math.round(temp)
 	const roundedFeelsLike = Math.round(feels_like)
 	const showFeelsLike = roundedTemp !== roundedFeelsLike
-	const { icon, main } = weather?.[0] || {}
+	const { icon, main, description } = weather?.[0] || {}
 
 	return (
 		<Card
@@ -108,13 +108,20 @@ const Currently: FC<ICurrentlyProps> = ({ data, metric, setMetric }) => {
 					) : (
 						<CircularProgress />
 					)}
-					<Box
-						sx={{
-							textTransform: 'capitalize',
-						}}
+					<Tooltip
+						title={
+							description &&
+							description.charAt(0).toUpperCase() + description.slice(1)
+						}
 					>
-						{main}
-					</Box>
+						<Box
+							sx={{
+								textTransform: 'capitalize',
+							}}
+						>
+							{main}
+						</Box>
+					</Tooltip>
 				</Box>
 			</Box>
 		</Card>
