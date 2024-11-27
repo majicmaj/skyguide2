@@ -1,6 +1,4 @@
-import { useEffect, useState } from 'react'
-import { getWeather, getCityName } from './services/API'
-import { Box, height } from '@mui/system'
+import { Box } from '@mui/system'
 import Currently from './sections/Currently/Currently'
 import Alerts from './sections/Alerts/Alerts'
 import {

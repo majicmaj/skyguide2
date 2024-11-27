@@ -30,10 +30,11 @@ const useData = ({
 
   useEffect(() => {
     if (devMode) {
-      setWeather(SAMPLE_LOCATION)
+      setWeather(SAMPLE_DATA)
       setLocation(SAMPLE_LOCATION)
       return
     }
+    
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords
@@ -56,18 +57,11 @@ const useData = ({
       },
       (err) => {
         console.log(err)
-        //TODO: delete
-        getWeather(38.92, -77.38)
-          .then((data: any) => {
-            setWeather(data)
-          })
-          .catch((err: any) => {
-            console.log(err)
-          })
+        setWeather(SAMPLE_DATA)
         setLocation(SAMPLE_LOCATION)
       }
     )
-  }, [])
+  }, [devMode])
 
   return {
     weather,
