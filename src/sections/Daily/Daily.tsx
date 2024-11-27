@@ -93,7 +93,7 @@ const DayWeather = ({ item, index, metric, data }: any) => {
 					gridTemplateColumns: '30px 1fr 30px',
 				}}
 			>
-				<span style={{ color: minHsl }}>{Math.round(min)}&deg;</span>
+				<span style={{ color: minHsl, fontWeight:'bold', filter:'drop-shadow(0 0 1px #0008)' }}>{Math.round(min)}&deg;</span>
 				<Bar
 					min={cMin}
 					max={cMax}
@@ -101,7 +101,7 @@ const DayWeather = ({ item, index, metric, data }: any) => {
 					maxHsl={maxHsl}
 					data={data}
 				/>
-				<span style={{ color: maxHsl }}>{Math.round(max)}&deg;</span>
+				<span style={{ color: maxHsl, fontWeight:'bold', filter:'drop-shadow(0 0 1px #0008)' }}>{Math.round(max)}&deg;</span>
 			</Box>
 		</Box>
 	)

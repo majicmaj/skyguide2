@@ -34,7 +34,7 @@ const HourWeather = ({ data, index, metric, onClick }: any) => {
 			{index === 0 ? <p>Now</p> : <p>{getFormattedTime(dt)}</p>}
 			<WeatherIcon icon={icon} description={description} />
 			<ColoredPop pop={pop} />
-			<Box sx={{ color: tempColor }}>{Math.round(temp)}&deg;</Box>
+			<Box sx={{ color: tempColor, fontWeight:'bold', filter:'drop-shadow(0 0 1px #0008)'  }}>{Math.round(temp)}&deg;</Box>
 		</Box>
 	)
 }
