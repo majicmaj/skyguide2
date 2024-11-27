@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getWeather, getCityName } from './services/API'
-import { Box } from '@mui/system'
+import { Box, height } from '@mui/system'
 import Currently from './sections/Currently/Currently'
 import Alerts from './sections/Alerts/Alerts'
 import {
@@ -11,119 +11,27 @@ import Hourly from './sections/Hourly/Hourly'
 import Daily from './sections/Daily/Daily'
 import Stats from './sections/Stats/Stats'
 import Nav from './sections/Nav/Nav'
-import SampleData from './SampleData.json'
 import useStickyState from './hooks/useStickyState'
 import Minutely from './sections/Minutely/Minutely'
 import { MEDIA } from './constants'
-
-const SampleLocation = {
-	results: [
-		{
-			address_components: [
-				{
-					long_name: 'Herndon',
-					short_name: 'Herndon',
-					types: ['locality', 'political'],
-				},
-			],
-		},
-	],
-}
-
-const gridArea = {
-	def: `
-	"n n"
-	"c c"
-	"h s"
-	"d d"
-	`,
-	willPreciptate: `
-	"n n"
-	"c c"
-	"m m"
-	"h s"
-	"d d"
-	`,
-	alerts: `
-	"n n"
-	"c c"
-	"a a"
-	"h s"
-	"d d"
-	`,
-	both: `
-	"n n"
-	"c c"
-	"a a"
-	"m m"
-	"h s"
-	"d d"
-	`,
-}
-
-const getGridArea = (precipitation: boolean, alerts: boolean) => {
-	if (precipitation && alerts) {
-		return gridArea.both
-	} else if (precipitation) {
-		return gridArea.willPreciptate
-	} else if (alerts) {
-		return gridArea.alerts
-	}
-	return gridArea.def
-}
+import useData from './hooks/useData'
+import { getGridArea } from './utils/getGridArea'
 
 function App() {
-	const devMode = 0
-	const [data, setData] = useState<any>({})
-	const [location, setLocation] = useState<any>({})
+	const devMode = false
 	const [metric, setMetric] = useStickyState(true, 'metric')
+	
+	const { weather, location } = useData({
+		metric,
+		devMode
+	}) 
 
-	useEffect(() => {
-		if (devMode) {
-			setData(SampleData)
-			setLocation(SampleLocation)
-		} else {
-			navigator.geolocation.getCurrentPosition(
-				(position) => {
-					const { latitude, longitude } = position.coords
-					const lat = parseFloat(latitude.toFixed(2))
-					const lon = parseFloat(longitude.toFixed(2))
-					getWeather(lat, lon)
-						.then((data: any) => {
-							setData(data)
-						})
-						.catch((err: any) => {
-							console.log(err)
-						})
-					getCityName(lat, lon)
-						.then((data: any) => {
-							setLocation(data)
-						})
-						.catch((err: any) => {
-							console.log(err)
-						})
-				},
-				(err) => {
-					console.log(err)
-					//TODO: delete
-					getWeather(38.92, -77.38)
-						.then((data: any) => {
-							setData(data)
-						})
-						.catch((err: any) => {
-							console.log(err)
-						})
-					setLocation(SampleLocation)
-				}
-			)
-		}
-	}, [])
-
-	const { current, minutely, hourly, daily, alerts } = data || {}
+	const { current, minutely, hourly, daily, alerts } = weather || {}
 	const { dt } = current || {}
 	const backgroundImage = getDesktopBackground(dt)
 	const backgroundMobileImage = getMobileBackground(dt)
 	const willPreciptate = minutely?.some((m: any) => m.precipitation > 0)
+
 	return (
 		<Box
 			className='App'
@@ -142,11 +50,13 @@ function App() {
 					minHeight: '100vh',
 					display: 'grid',
 					gridTemplateColumns: '1fr',
-					gridGap: '1rem',
-					padding: '0.5rem',
+					gridTemplateRows: 'auto auto auto auto auto auto auto 1fr',
+					gridGap: '16px',
+					padding: '16px',
 					fontSize: '20px',
 					maxWidth: '1000px',
 					margin: '0 auto',
+
 					[MEDIA.xs]: {
 						fontSize: '16px',
 						padding: 0,
@@ -164,6 +74,7 @@ function App() {
 				{willPreciptate && <Minutely data={minutely} />}
 				<Hourly data={hourly} metric={metric} />
 				<Daily data={daily} metric={metric} />
+
 			</Box>
 		</Box>
 	)

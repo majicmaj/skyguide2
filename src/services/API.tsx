@@ -7,6 +7,6 @@ export const getWeather = async (lat: number, lon: number) => {
 }
 
 export const getCityName = async (lat: number, lon: number) => {
-	const response = await axios.get(`${api}/geocode?lat=${lat}&lon=${lon}`)
+	const response = await axios.get(`${api}/reverse-geocode?lat=${lat}&lon=${lon}`)
 	return response.data
 }
